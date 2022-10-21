@@ -39,7 +39,7 @@ The chain rule can be used to calculate the derivate of nested functions, such i
 
 A more general form of chain rule applies when a function $h$ has several arguments, or when its argument is a vector. Suppose we have $h = h(y(t))$ where  $y \in R^n$ and $t \in R^m $. Here, $h$ is the combination of $n$ functions, each of which has $m$ variables. Using the chain rule, the derivative of $h$ with respect to $t$, now called the gradient of $h$, is
 
-$$ \nabla_{t}h = \sum_{i=1}^{n}{\frac{\partial h}{\partial y_{i}}\nabla y_{i}\left(t\right)}.$$
+$$\nabla_{t}h = \sum_{i=1}^{n}{\frac{\partial h}{\partial y_{i}}\nabla y_{i}\left(t\right)}.$$
 
 ### 2.4 Evaluation Trace and Computational Graph
 Our approach for automated differentiation is founded on the concepts of evaluation trail and computational graph.
