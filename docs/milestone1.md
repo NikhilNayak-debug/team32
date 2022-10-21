@@ -2,7 +2,7 @@
 
 20th October, 2022
 
-Team: Kareema Batool, Nikhil Nayak, Nishtha Sardana, Sakest Joshi, Sree Harsha Tanneru
+Team: Kareema Batool, Nikhil Nayak, Nishtha Sardana, Saket Joshi, Sree Harsha Tanneru
 
 ## 1. Introduction
 
