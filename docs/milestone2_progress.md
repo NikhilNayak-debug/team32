@@ -43,6 +43,5 @@ We will follow a pair-programming style task allocation structure. Each task wil
 | Nishtha         | Functions implementation                |                                                                                                                                                                                                                                                 |                  |
 | Saket           | Write proposal for additional features |                                                                                                                                                                                                                                                 | -                |
 | Sree Harsha     | Write proposal for additional features                |                                                                                                                                                                                                                                                 |                  |
-              
-
+| Nishtha    | Write proposal for additional features                |                                                                                                                                                                                                                                                 |                  |
 
