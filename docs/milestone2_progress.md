@@ -4,14 +4,14 @@
 
 ## Completed Tasks
 
-| **Member**       | **Task**                                                                                                 | **Status** |
-|------------------|----------------------------------------------------------------------------------------------------------|------------|
-| **Milestone 2A** |                                                                                                          |            |
-| Kareema          |                                                                                                          |            |
-| Nikhil           |                                                                                                          |            |
-| Nishtha          |                                                                                                          |            |
-| Saket            | <ul><li> Wrote the "How to use" documentation section </li><li> Compiled the Jupyter notebook </li></ul> | Completed  |
-| Sree Harsha      |                                                                                                          |            |
+| **Member**       | **Task**                                                                                                                                                                                                                      | **Status** |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| **Milestone 2A** |                                                                                                                                                                                                                               |            |
+| Kareema          |                                                                                                                                                                                                                               |            |
+| Nikhil           | <ul><li> Created the repository and added github action workflows and status badge as part of Milestone 1B. </li><li> Added implementation details and how to use fab-AD from the user's perspective in Milestone 1</li></ul> | Completed  |
+| Nishtha          |                                                                                                                                                                                                                               |            |
+| Saket            | <ul><li> Wrote the "How to use" documentation section </li><li> Compiled the Jupyter notebook </li></ul>                                                                                                                      | Completed  |
+| Sree Harsha      |                                                                                                                                                                                                                               |            |
 
 ## Planned tasks for Milestone 2
 
@@ -26,23 +26,23 @@ Tasks to be done for Milestone 2
 
 We will follow a pair-programming style task allocation structure. Each task will be handled by 2 people.
 
-| **Member**      | **Task**         | **Status** | **Comments** |
-|-----------------|------------------|------------|--------------|
-| **Milestone 2** |                  |            |              |
-| Saket           | Minimum package requirements |            | -            |
-| Sree Harsha     | Minimum package requirements                |            |              |
-| Kareema         | Minimum implementation requirements                |            |              |
-| Nikhil          | Minimum implementation requirements                |            |              |
-| Kareema         | Functions implementation                |            |              |
-| Nikhil          | Functions implementation                |            |              |
-| Sree Harsha     | Functions implementation                |            |              |
-| Kareema         | Test Forward mode                |            |              |
-| Saket           | Test Forward mode |            | -            |
-| Nikhil          | Update documentation                |            |              |
-| Nishtha         | Update documentation                |            |              |
-| Nishtha         | Functions implementation                |            |              |
-| Saket           | Write proposal for additional features |            | -            |
-| Sree Harsha     | Write proposal for additional features                |            |      |
+| **Member**      | **Task**         | **Status**                                                                                                                                                                                                                                      | **Comments**     |
+|-----------------|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
+| **Milestone 2** |                  |                                                                                                                                                                                                                                                 |                  |
+| Saket           | Minimum package requirements |                                                                                                                                                                                                                                                 | -                |
+| Sree Harsha     | Minimum package requirements                |                                                                                                                                                                                                                                                 |                  |
+| Kareema         | Minimum implementation requirements                | Add documentation on how users should download the package and how the automatic differentiation object should be instantiated and used in the forward mode for a specific application.                                                         |                  |
+| Nikhil          | Minimum implementation requirements                |                                                                                                                                                                                                                                                 | Work in Progress |
+| Kareema         | Functions implementation                |                                                                                                                                                                                                                                                 |                  |
+| Nikhil          | Functions implementation                | Deciding and implementing the functions needed for the mathematical operations used to calculate the derivatives of a vector function.                                                                                                          | Yet to start     |
+| Sree Harsha     | Functions implementation                |                                                                                                                                                                                                                                                 |                  |
+| Kareema         | Test Forward mode                |                                                                                                                                                                                                                                                 |                  |
+| Saket           | Test Forward mode |                                                                                                                                                                                                                                                 | -                |
+| Nikhil          | Update documentation                | Incorporating the feedback given on Sofwtare Organization in the previous milestone and adding details such as directory structure, basic modules, and package installation guidelines as they change during the stages of the project lifecycle. | Work in Progress |
+| Nishtha         | Update documentation                |                                                                                                                                                                                                                                                 |                  |
+| Nishtha         | Functions implementation                |                                                                                                                                                                                                                                                 |                  |
+| Saket           | Write proposal for additional features |                                                                                                                                                                                                                                                 | -                |
+| Sree Harsha     | Write proposal for additional features                |                                                                                                                                                                                                                                                 |                  |
               
 
 
