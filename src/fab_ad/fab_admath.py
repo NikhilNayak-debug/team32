@@ -19,6 +19,8 @@ def sqrt(tensor):
             identifier=f"sqrt({tensor.identifier})"
         )
     elif isinstance(tensor, _ALLOWED_TYPES):
+        if tensor < 0.0:
+            raise ValueError("Value of tensor out of range for function sqrt!")
         return FabTensor(value=tensor ** 0.5, derivative = 0, identifier="sqrt(input)")
     else:
         raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
@@ -47,6 +49,8 @@ def log(tensor):
             identifier=f"log({tensor.identifier})"
         )
     elif isinstance(tensor, _ALLOWED_TYPES):
+        if tensor < 0.0:
+            raise ValueError("Value of tensor out of range for function log!")
         return FabTensor(value=np.log(tensor), derivative = 0, identifier="sqrt(input)")
     else:
         raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
@@ -64,18 +68,6 @@ def sin(tensor):
     else:
         raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
-def cosec(tensor):
-    if isinstance(tensor, FabTensor):
-        return FabTensor(
-            value=np.cosec(tensor.value),
-            derivative=-np.cosec(tensor.value) * np.cot(tensor.value) * tensor.derivative,
-            identifier=f"cosec({tensor.identifier})"
-        )
-    elif isinstance(tensor, _ALLOWED_TYPES):
-        return FabTensor(value=np.cosec(tensor), derivative = 0, identifier="cosec(input)")
-    else:
-        raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
-
 
 def cos(tensor):
     if isinstance(tensor, FabTensor):
@@ -86,18 +78,6 @@ def cos(tensor):
         )
     elif isinstance(tensor, _ALLOWED_TYPES):
         return FabTensor(value=np.cos(tensor), derivative = 0, identifier="cos(input)")
-    else:
-        raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
-
-def sec(tensor):
-    if isinstance(tensor, FabTensor):
-        return FabTensor(
-            value=np.sec(tensor.value),
-            derivative=np.sec(tensor.value) * np.tan(tensor.value) * tensor.derivative,
-            identifier=f"sec({tensor.identifier})"
-        )
-    elif isinstance(tensor, _ALLOWED_TYPES):
-        return FabTensor(value=np.sec(tensor), derivative = 0, identifier="sec(input)")
     else:
         raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
@@ -114,18 +94,6 @@ def tan(tensor):
     else:
         raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
-def cot(tensor):
-    if isinstance(tensor, FabTensor):
-        return FabTensor(
-            value=np.cot(tensor.value),
-            derivative=-(np.cosec(tensor.value) ** 2) * tensor.derivative,
-            identifier=f"cot({tensor.identifier})"
-        )
-    elif isinstance(tensor, _ALLOWED_TYPES):
-        return FabTensor(value=np.cot(tensor), derivative = 0, identifier="cot(input)")
-    else:
-        raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
-
 
 def arcsin(tensor):
     if isinstance(tensor, FabTensor):
@@ -137,7 +105,7 @@ def arcsin(tensor):
             identifier=f"sin^{-1}({tensor.identifier})"
         )
     elif isinstance(tensor, _ALLOWED_TYPES):
-        if not (-1 <= tensor.value <= 1):
+        if not (-1 <= tensor <= 1):
             raise ValueError("Value of tensor out of range for function arcsin!")
         return FabTensor(value=np.arcsin(tensor), derivative = 0, identifier="sin^{-1}(input)")
     else:
@@ -154,7 +122,7 @@ def arccos(tensor):
             identifier=f"cos^{-1}({tensor.identifier})"
         )
     elif isinstance(tensor, _ALLOWED_TYPES):
-        if not (-1 <= tensor.value <= 1):
+        if not (-1 <= tensor <= 1):
             raise ValueError("Value of tensor out of range for function arccos!")
         return FabTensor(value=np.arccos(tensor), derivative = 0, identifier="cos^{-1}(input)")
     else:
@@ -169,9 +137,7 @@ def arctan(tensor):
             identifier=f"tan^{-1}({tensor.identifier})"
         )
     elif isinstance(tensor, _ALLOWED_TYPES):
-        if not (-1 <= tensor.value <= 1):
-            raise ValueError("Value of tensor out of range for function arctan!")
-        return FabTensor(value=np.arcsin(tensor), derivative = 0, identifier="tan^{-1}(input)")
+        return FabTensor(value=np.arctan(tensor), derivative = 0, identifier="tan^{-1}(input)")
     else:
         raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
@@ -180,6 +146,6 @@ def sigmoid(tensor):
     if isinstance(tensor, FabTensor):
         return 1/(1 + exp(-tensor))
     elif isinstance(tensor, _ALLOWED_TYPES):
-        return FabTensor(value=1/(1 + np.exp(-tensor)), derivative = 0, identifier="sigmoid(input)")
+        return FabTensor(value=1/(1 + np.exp(-tensor)), derivative = 0, identifier=f"sigmoid({tensor})")
     else:
         raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
