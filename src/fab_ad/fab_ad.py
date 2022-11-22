@@ -2,7 +2,7 @@ import os
 import math
 import numpy as np
 from typing import Iterable
-from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
+from .constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 
 class FabTensor(object):
