@@ -32,6 +32,8 @@ use. fabAD can be used to automatically differentiate functions via
 forward mode. Automatic Differentiation finds applications in 
 optimization, machine learning, and numerical methods.
 
+# Installation
+
 # User Guide
 Once you install the package, you can simple import it by `import fab_ad 
 as ad`.
