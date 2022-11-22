@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "fab-ad"
+version = "0.1.0"
+description = "Automatic differentiation package supporting Forward and reverse differentiation"
+authors = ["Saket Joshi <saket_joshi@g.harvard.edu> , Nishtha Sardana <>, Nikhil Nayak <>, Sree Harsha Tanneru <>, Kareema Batool <>"]
+license = "MIT License"
+readme = "README.md"
+packages = [{include = "fab_ad"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
