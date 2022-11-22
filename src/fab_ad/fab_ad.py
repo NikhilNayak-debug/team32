@@ -1,14 +1,23 @@
 import os
 import math
 import numpy as np
-from .constants import _ALLOWED_TYPES
+from typing import Iterable
+from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
+
+
+class InputPlaceholder(object):
+
+    def __init__(self, shape):
+        self.shape = shape
 
 
 class FabTensor(object):
 
-    def __init__(self, value, derivative=None):
+    def __init__(self, value, derivative=None, identifier=""):
         self.value = value
+        # directional derivative
         self.derivative = derivative
+        self.identifier = identifier
 
     def __repr__(self):
         """Represents the FabTensor as a string
@@ -18,10 +27,10 @@ class FabTensor(object):
         str
             _description_
         """
-        return f"value: {self.value} derivative: {self.derivative}"
+        return f"value: {self.value} derivative: {self.derivative} name: {self.identifier}"
 
     def __str__(self):
-        return f"value: {self.value} derivative: {self.derivative}"
+        return f"value: {self.value} derivative: {self.derivative} name: {self.identifier}"
 
     def __eq__(self, other):
         """Checks if value attribute of two `FabTensor` objects are equal.
@@ -100,9 +109,9 @@ class FabTensor(object):
 
     def __add__(self, other):
         if isinstance(other, FabTensor):
-            return FabTensor(self.value + other.value, derivative=self.derivative + other.derivative)
+            return FabTensor(self.value + other.value, derivative=self.derivative + other.derivative, identifier=f'{self.identifier} + {other.identifier}')
         elif isinstance(other, _ALLOWED_TYPES):
-            return FabTensor(self.value + other.value, derivative=self.value)
+            return FabTensor(self.value + other.value, derivative=self.value, identifier=f'{self.identifier} + constant')
         else:
             raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
 
@@ -114,9 +123,9 @@ class FabTensor(object):
     
     def __sub__(self, other):
         if isinstance(other, FabTensor):
-            return FabTensor(self.value - other.value, derivative=self.derivative - other.derivative)
+            return FabTensor(self.value - other.value, derivative=self.derivative - other.derivative, identifier=f'{self.identifier} - {other.identifier}')
         elif isinstance(other, _ALLOWED_TYPES):
-            return FabTensor(self.value - other.value, derivative=self.value)
+            return FabTensor(self.value - other.value, derivative=self.value, identifier=f'{self.identifier} + {other.identifier}')
         else:
             raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
     
@@ -130,12 +139,14 @@ class FabTensor(object):
         if isinstance(other, FabTensor):
             return FabTensor(
                 self.value * other.value,
-                derivative=self.value * other.derivative + other.value * self.derivative
+                derivative=self.value * other.derivative + other.value * self.derivative,
+                identifier=f'{self.identifier} * {other.identifier}',
             )
         elif isinstance(other, _ALLOWED_TYPES):
             return FabTensor(
                 self.value * other,
-                derivative=self.derivative * other
+                derivative=self.derivative * other,
+                identifier=f'{self.identifier} * {other.identifier}'
             )
         else:
             raise TypeError(f"Cannot multiple FabTensor with object of type {type(other)}")
@@ -158,52 +169,169 @@ class FabTensor(object):
         return (self ** -1) * other
     
     def __itruediv__(self, other):
-        raise NotImplementedError  
+        return self * (other ** (-1))
 
     def __pow__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            value = self.value ** other.value
+            derivative = (other.value * (self.value ** (other.value - 1)) * self.derivative) + ((self.value ** other.value) * np.log(other.value) * other.derivative)
+            return FabTensor(
+                value=value,
+                derivative=derivative,
+                identifier=f"{self.identifier}^{other.identifier}"
+            )
+        elif isinstance(other, _ALLOWED_TYPES):
+            return FabTensor(
+                value=self.value ** other,
+                derivative=other * (self.value ** (other - 1)) * self.derivative,
+                identifier=f"{self.identifier}^{other}"
+            )
+        else:
+            raise TypeError(f"Cannot compute power of FabTensor with object of type {type(other)}")
 
     def __ipow__(self, other):
         raise NotImplementedError
 
     def __rpow__(self, other):
-        raise NotImplementedError 
+        if isinstance(other, _ALLOWED_TYPES):
+            return FabTensor(
+                value=other ** self.value,
+                derivative=(other ** self.value) * np.log(other) * self.derivative,
+                identifier=f"{other}^{self.identifier}"
+            )
+        else:
+            raise TypeError(f"Cannot compute power of object of type {type(other)} with FabTensor")
 
     def directional_derivative(self, direction=None):
         raise NotImplementedError
 
     @staticmethod
     def sqrt(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            if tensor.value < 0:
+                raise ValueError("Cannot compute sqrt for FabTensor with negative value!")
+            return FabTensor(
+                value=tensor.value ** 0.5,
+                derivative=0.5 * (tensor.value ** -0.5),
+                identifier=f"sqrt({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            return FabTensor(value=tensor ** 0.5, name="sqrt(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
     def exp(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            return FabTensor(
+                value=np.exp(tensor.value),
+                derivative=np.exp(tensor.value) * tensor.derivative,
+                identifier=f"e^({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            return FabTensor(value=np.exp(tensor), name="sqrt(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
     def log(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            if tensor.value < 0:
+                raise ValueError("Cannot compute logarithm for FabTensor with negative value!")
+            return FabTensor(
+                value=np.log(tensor.value),
+                derivative=(1.0 / tensor.value) * tensor.derivative,
+                identifier=f"log({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            return FabTensor(value=np.log(tensor), name="sqrt(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
     def sin(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            return FabTensor(
+                value=np.sin(tensor.value),
+                derivative=np.cos(tensor.value) * tensor.derivative,
+                identifier=f"sin({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            return FabTensor(value=np.sin(tensor), name="sin(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
     def cos(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            return FabTensor(
+                value=np.cos(tensor.value),
+                derivative=-1 * np.sin(tensor.value) * tensor.derivative,
+                identifier=f"cos({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            return FabTensor(value=np.cos(tensor), name="cos(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
     def tan(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            return FabTensor(
+                value=np.tan(tensor.value),
+                derivative=(1 / (np.cos(tensor.value) ** 2)) * tensor.derivative,
+                identifier=f"tan({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            return FabTensor(value=np.tan(tensor), name="tan(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
     def arcsin(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            if not (-1 <= tensor.value <= 1):
+                raise ValueError("Value of tensor out of range for function arcsin!")
+            return FabTensor(
+                value=np.arcsin(tensor.value),
+                derivative=(1 / ((1 - tensor.value ** 2) ** 0.5)) * tensor.derivative,
+                identifier=f"sin^{-1}({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            if not (-1 <= tensor.value <= 1):
+                raise ValueError("Value of tensor out of range for function arcsin!")
+            return FabTensor(value=np.arcsin(tensor), name="sin^{-1}(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
     def arccos(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            if not (-1 <= tensor.value <= 1):
+                raise ValueError("Value of tensor out of range for function arccos!")
+            return FabTensor(
+                value=np.arcsin(tensor.value),
+                derivative=(-1 / ((1 - tensor.value ** 2) ** 0.5)) * tensor.derivative,
+                identifier=f"cos^{-1}({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            if not (-1 <= tensor.value <= 1):
+                raise ValueError("Value of tensor out of range for function arccos!")
+            return FabTensor(value=np.arccos(tensor), name="cos^{-1}(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
     def arctan(tensor):
-        raise NotImplementedError
+        if isinstance(tensor, FabTensor):
+            return FabTensor(
+                value=np.arctan(tensor.value),
+                derivative=(1 / (1 + tensor.value ** 2)) * tensor.derivative,
+                identifier=f"tan^{-1}({tensor.identifier})"
+            )
+        elif isinstance(tensor, _ALLOWED_TYPES):
+            if not (-1 <= tensor.value <= 1):
+                raise ValueError("Value of tensor out of range for function arctan!")
+            return FabTensor(value=np.arcsin(tensor), name="tan^{-1}(input)")
+        else:
+            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
