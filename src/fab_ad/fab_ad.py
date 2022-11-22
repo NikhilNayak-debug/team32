@@ -1,78 +1,164 @@
 import os
 import math
 import numpy as np
+from .constants import _ALLOWED_TYPES
 
 
 class FabTensor(object):
 
-    def __init__(self, val, order=2):
-        pass
+    def __init__(self, value, derivative=None):
+        self.value = value
+        self.derivative = derivative
 
     def __repr__(self):
-        raise NotImplementedError
+        """Represents the FabTensor as a string
+
+        Returns
+        -------
+        str
+            _description_
+        """
+        return f"value: {self.value} derivative: {self.derivative}"
 
     def __str__(self):
-        raise NotImplementedError
+        return f"value: {self.value} derivative: {self.derivative}"
 
     def __eq__(self, other):
-        raise NotImplementedError
+        """Checks if value attribute of two `FabTensor` objects are equal.
+
+        Parameters
+        ----------
+        other : _type_
+            _description_
+
+        Returns
+        -------
+        _type_
+            _description_
+
+        Raises
+        ------
+        TypeError
+            _description_
+        """
+        if isinstance(other, FabTensor):
+            return other.value == self.value
+        elif isinstance(other, _ALLOWED_TYPES):
+            return other == self.value
+        else:
+            raise TypeError(f"Cannot compare FabTensor and object of type {type(other)}")
+
     
     def __ne__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            return other.value != self.value
+        elif isinstance(other, _ALLOWED_TYPES):
+            return other != self.value
+        else:
+            raise TypeError(f"Cannot compare FabTensor and object of type {type(other)}")
 
     def __lt__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            return self.value < other.value
+        elif isinstance(other, _ALLOWED_TYPES):
+            return self.value < other
+        else:
+            raise TypeError(f"Cannot compare FabTensor and object of type {type(other)}")
 
     def __gt__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            return self.value > other.value
+        elif isinstance(other, _ALLOWED_TYPES):
+            return self.value > other
+        else:
+            raise TypeError(f"Cannot compare FabTensor and object of type {type(other)}")
 
     def __le__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            return self.value <= other.value
+        elif isinstance(other, _ALLOWED_TYPES):
+            return self.value <= other
+        else:
+            raise TypeError(f"Cannot compare FabTensor and object of type {type(other)}")
 
     def __ge__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            return self.value >= other.value
+        elif isinstance(other, _ALLOWED_TYPES):
+            return self.value >= other
+        else:
+            raise TypeError(f"Cannot compare FabTensor and object of type {type(other)}")
 
     def __len__(self):
-        raise NotImplementedError
+        if self.derivative is not None:
+            return len(self.derivative)
+        else:
+            raise ValueError("derivative is not initialized yet!")
     
     def __neg__(self):
-        raise NotImplementedError
+        return -1 * self
 
     def __add__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            return FabTensor(self.value + other.value, derivative=self.derivative + other.derivative)
+        elif isinstance(other, _ALLOWED_TYPES):
+            return FabTensor(self.value + other.value, derivative=self.value)
+        else:
+            raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
 
     def __radd__(self, other):
-        raise NotImplementedError
+        return self + other
 
     def __iadd__(self, other):
-        raise NotImplementedError
+        return self + other
     
     def __sub__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            return FabTensor(self.value - other.value, derivative=self.derivative - other.derivative)
+        elif isinstance(other, _ALLOWED_TYPES):
+            return FabTensor(self.value - other.value, derivative=self.value)
+        else:
+            raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
     
     def __rsub__(self, other):
-        raise NotImplementedError
+        raise -1 * self + other
     
     def __isub__(self, other):
-        raise NotImplementedError
+        return self - other
     
     def __mul__(self, other):
-        raise NotImplementedError
+        if isinstance(other, FabTensor):
+            return FabTensor(
+                self.value * other.value,
+                derivative=self.value * other.derivative + other.value * self.derivative
+            )
+        elif isinstance(other, _ALLOWED_TYPES):
+            return FabTensor(
+                self.value * other,
+                derivative=self.derivative * other
+            )
+        else:
+            raise TypeError(f"Cannot multiple FabTensor with object of type {type(other)}")
 
     def __rmul__(self, other):
-        raise NotImplementedError
+        return self * other
 
     def __imul__(self, other):
-        raise NotImplementedError    
+        return self * other
     
     def __truediv__(self, other):
-        raise NotImplementedError
+        try:
+            return self * (other ** (-1))
+        except ZeroDivisionError:
+            raise ZeroDivisionError(f"Cannot divide FabTensor with {other}")
+        except Exception as e:
+            raise e
     
     def __rtruediv__(self, other):
-        raise NotImplementedError
+        return (self ** -1) * other
     
     def __itruediv__(self, other):
-        raise NotImplementedError    
+        raise NotImplementedError  
 
     def __pow__(self, other):
         raise NotImplementedError
