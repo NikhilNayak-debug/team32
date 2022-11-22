@@ -210,18 +210,3 @@ class FabTensor(object):
 
     def directional_derivative(self, seed_vector: np.array):
         return seed_vector.dot(self.derivative)
-
-
-def sqrt(tensor: Union[Type[FabTensor], Number]):
-    if isinstance(tensor, FabTensor):
-        if tensor.value < 0:
-            raise ValueError("Cannot compute sqrt for FabTensor with negative value!")
-        return FabTensor(
-            value=tensor.value ** 0.5,
-            derivative=0.5 * (tensor.value ** -0.5),
-            identifier=f"sqrt({tensor.identifier})"
-        )
-    elif isinstance(tensor, _ALLOWED_TYPES):
-        return FabTensor(value=tensor ** 0.5, name="sqrt(input)")
-    else:
-        raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
