@@ -65,7 +65,7 @@ experience demonstrates that now is the perfect time for all types of
 information to come together in order to support new discoveries, which 
 will enable us and many students to continue working toward this aim.
 
-#Software Inclusivity
+# Software Inclusivity
 Users and collaborators from all origins and identities are welcome to the 
 fab_ad package and its developer. As was seen during the creation of this 
 package, we think that trust, respect, and care are the foundations of 
@@ -77,3 +77,8 @@ created using Python and English, anyone who is proficient in another
 language or programming language is welcome to contribute. Pull requests 
 are examined and approved by all developers while this package is being 
 developed.
+
+Every time one of us feels the need to start a pull request, that person 
+would talk to the other members and come to a consensus. We would adore 
+the opportunity to carry this constructive dialogue into other 
+collaborations with this package.
