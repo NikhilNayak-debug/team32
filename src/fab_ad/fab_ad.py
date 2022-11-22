@@ -16,12 +16,23 @@ from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 class FabTensor(object):
 
     def __init__(self, value, derivative=None, identifier=""):
+        """init method
+
+        Parameters
+        ----------
+        value : number
+            evalu
+        derivative : _type_, optional
+            _description_, by default None
+        identifier : str, optional
+            _description_, by default ""
+        """
         self.value = value
         # derivative w.r.t all independent variables
         if derivative is None:
-            derivative = [1.0]
+            derivative = 1.0
         if isinstance(derivative, _ALLOWED_TYPES):
-            self.derivative = [derivative]
+            derivative = [derivative]
         self.derivative = np.array(derivative)
         self.identifier = identifier
 
@@ -117,12 +128,17 @@ class FabTensor(object):
         if isinstance(other, FabTensor):
             return FabTensor(self.value + other.value, derivative=self.derivative + other.derivative, identifier=f'{self.identifier} + {other.identifier}')
         elif isinstance(other, _ALLOWED_TYPES):
-            return FabTensor(self.value + other.value, derivative=self.value, identifier=f'{self.identifier} + constant')
+            return FabTensor(self.value + other, derivative=self.derivative, identifier=f'{self.identifier} + {other}')
         else:
             raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
 
     def __radd__(self, other):
-        return self + other
+        if isinstance(other, FabTensor):
+            return FabTensor(self.value + other.value, derivative=self.derivative + other.derivative, identifier=f'{other.identifier} + {self.identifier}')
+        elif isinstance(other, _ALLOWED_TYPES):
+            return FabTensor(self.value + other, derivative=self.derivative, identifier=f'{other} + {self.identifier}')
+        else:
+            raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
 
     def __iadd__(self, other):
         return self + other
@@ -131,12 +147,12 @@ class FabTensor(object):
         if isinstance(other, FabTensor):
             return FabTensor(self.value - other.value, derivative=self.derivative - other.derivative, identifier=f'{self.identifier} - {other.identifier}')
         elif isinstance(other, _ALLOWED_TYPES):
-            return FabTensor(self.value - other.value, derivative=self.value, identifier=f'{self.identifier} + {other.identifier}')
+            return FabTensor(self.value - other.value, derivative=self.derivative, identifier=f'{self.identifier} + {other.identifier}')
         else:
             raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
     
     def __rsub__(self, other):
-        raise -1 * self + other
+        return -1 * self + other
     
     def __isub__(self, other):
         return self - other
@@ -146,19 +162,45 @@ class FabTensor(object):
             return FabTensor(
                 self.value * other.value,
                 derivative=self.value * other.derivative + other.value * self.derivative,
-                identifier=f'{self.identifier} x {other.identifier}',
+                identifier=f'{self.identifier} * {other.identifier}',
             )
         elif isinstance(other, _ALLOWED_TYPES):
+            if (other==1):
+                identifier = self.identifier
+            elif (other==-1):
+                identifier=f'-{self.identifier}'
+            else:
+                identifier = f'{self.identifier} * {other}'
+
             return FabTensor(
                 self.value * other,
                 derivative=self.derivative * other,
-                identifier=f'{self.identifier} x {other.identifier}'
+                identifier=identifier
             )
         else:
             raise TypeError(f"Cannot multiple FabTensor with object of type {type(other)}")
 
     def __rmul__(self, other):
-        return self * other
+        if isinstance(other, FabTensor):
+            return FabTensor(
+                self.value * other.value,
+                derivative=self.value * other.derivative + other.value * self.derivative,
+                identifier=f'{other.identifier} * {self.identifier}',
+            )
+        elif isinstance(other, _ALLOWED_TYPES):
+            if (other==1):
+                identifier = self.identifier
+            elif (other==-1):
+                identifier=f'-{self.identifier}'
+            else:
+                identifier = f'{other} * {self.identifier}'
+            return FabTensor(
+                self.value * other,
+                derivative=self.derivative * other,
+                identifier=identifier
+            )
+        else:
+            raise TypeError(f"Cannot multiple FabTensor with object of type {type(other)}")
 
     def __imul__(self, other):
         return self * other
@@ -190,13 +232,10 @@ class FabTensor(object):
             return FabTensor(
                 value=self.value ** other,
                 derivative=other * (self.value ** (other - 1)) * self.derivative,
-                identifier=f"{self.identifier}^{other}"
+                identifier=f"{self.identifier}^{other}" if other != -1 else f"1 / {self.identifier}"
             )
         else:
             raise TypeError(f"Cannot compute power of FabTensor with object of type {type(other)}")
-
-    def __ipow__(self, other):
-        raise NotImplementedError
 
     def __rpow__(self, other):
         if isinstance(other, _ALLOWED_TYPES):
@@ -209,4 +248,4 @@ class FabTensor(object):
             raise TypeError(f"Cannot compute power of object of type {type(other)} with FabTensor")
 
     def directional_derivative(self, seed_vector: np.array):
-        return seed_vector.dot(self.derivative)
+        return np.array(seed_vector).dot(self.derivative)
