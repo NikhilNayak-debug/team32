@@ -16,6 +16,17 @@ from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 class FabTensor(object):
 
     def __init__(self, value, derivative=None, identifier=""):
+        """init method
+
+        Parameters
+        ----------
+        value : number
+            evalu
+        derivative : _type_, optional
+            _description_, by default None
+        identifier : str, optional
+            _description_, by default ""
+        """
         self.value = value
         # derivative w.r.t all independent variables
         if derivative is None:
@@ -117,7 +128,7 @@ class FabTensor(object):
         if isinstance(other, FabTensor):
             return FabTensor(self.value + other.value, derivative=self.derivative + other.derivative, identifier=f'{self.identifier} + {other.identifier}')
         elif isinstance(other, _ALLOWED_TYPES):
-            return FabTensor(self.value + other.value, derivative=self.value, identifier=f'{self.identifier} + constant')
+            return FabTensor(self.value + other.value, derivative=self.derivative, identifier=f'{self.identifier} + constant')
         else:
             raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
 
@@ -131,7 +142,7 @@ class FabTensor(object):
         if isinstance(other, FabTensor):
             return FabTensor(self.value - other.value, derivative=self.derivative - other.derivative, identifier=f'{self.identifier} - {other.identifier}')
         elif isinstance(other, _ALLOWED_TYPES):
-            return FabTensor(self.value - other.value, derivative=self.value, identifier=f'{self.identifier} + {other.identifier}')
+            return FabTensor(self.value - other.value, derivative=self.derivative, identifier=f'{self.identifier} + {other.identifier}')
         else:
             raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
     
