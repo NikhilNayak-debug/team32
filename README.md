@@ -33,3 +33,52 @@ forward mode. Automatic Differentiation finds applications in
 optimization, machine learning, and numerical methods.
 
 # Broader Impact, Inclusivity and Future directions
+We hope that our package will be used in a variety of disciplines, 
+including physics, engineering, applied mathematics, astronomy, and even 
+domains that the package's creators could never have envisaged. We believe 
+that this package can be used to perform automatic differentiations 
+accurately and effectively as well as serve as a model for the future 
+creation of improved automatic differentiation packages. We see several 
+opportunities for this package to be improved and would be pleased to see 
+them realized.
+
+On the other hand, we don't want to see this program being used as a 
+shortcut for differentiating work or for plagiarism or cheating. This 
+package's open-source nature makes it available to everyone, but it also 
+leaves it vulnerable to those who intend to use it for plagiarism. Users 
+should be mindful of this nature and pick their method of using this 
+package carefully. This software is not intended to be used as a shortcut 
+for differentiation procedures. It could be used to check results for 
+derivative calculations done manually or using other algorithms, although 
+derivative calculation techniques should still be used instead. These 
+exercises serve a purpose, and using this software to find the solutions 
+does not advance learning.
+
+Also evident is the connection between our automatic differentiation 
+algorithms and mathematical concepts like the Leibniz Rule and the Faa di 
+Bruno Formula that we made while working on this project. It shouldn't be 
+the first time that these formulas have been employed to compute 
+higher-order derivatives, but it provided motivation for us to carry out 
+the implementation ourselves. In order to close the gap between theories 
+and applications, we want for our project to serve as a case study. This 
+experience demonstrates that now is the perfect time for all types of 
+information to come together in order to support new discoveries, which 
+will enable us and many students to continue working toward this aim.
+
+# Software Inclusivity
+Users and collaborators from all origins and identities are welcome to the 
+fab_ad package and its developer. As was seen during the creation of this 
+package, we think that trust, respect, and care are the foundations of 
+greatness in a collaborative endeavor. In an effort to reach as many 
+people as possible who are interested in this package, we made every 
+effort to make it as inclusive and user-friendly as possible by including 
+the necessary documentation and instructions. Although this package was 
+created using Python and English, anyone who is proficient in another 
+language or programming language is welcome to contribute. Pull requests 
+are examined and approved by all developers while this package is being 
+developed.
+
+Every time one of us feels the need to start a pull request, that person 
+would talk to the other members and come to a consensus. We would adore 
+the opportunity to carry this constructive dialogue into other 
+collaborations with this package.
