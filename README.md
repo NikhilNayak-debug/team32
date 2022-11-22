@@ -33,6 +33,14 @@ forward mode. Automatic Differentiation finds applications in
 optimization, machine learning, and numerical methods.
 
 # User Guide
+Once you install the package, you can simple import it by `import fab_ad 
+as ad`.
+Afterwards, you could initiate the FabTensor object by giving the point 
+where you wish to differentiate. FabTensor can take in a vector input 
+values, representing a point's coordinates in multi-dimensional space. 
+Moreover, you could also add other supplementary features as in the code 
+demo provided below. You can find this demo file by the name of usage.py 
+under src in the github.
 
 # Documentation
 You can find the documentation for this package [here](https://code.harvard.edu/pages/CS107/team32/).
