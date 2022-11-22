@@ -5,7 +5,7 @@ description = "Automatic differentiation package supporting Forward and reverse 
 authors = ["Saket Joshi <saket_joshi@g.harvard.edu> , Nishtha Sardana <>, Nikhil Nayak <>, Sree Harsha Tanneru <>, Kareema Batool <>"]
 license = "MIT License"
 readme = "README.md"
-packages = [{include = "fab_ad"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.8"
