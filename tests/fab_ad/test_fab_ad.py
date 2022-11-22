@@ -24,12 +24,11 @@ def test_fabtensor_sanity():
 
 
 def test_fabtensor_len():
-    x = FabTensor(value=3, derivative=0, identifier='x')
-    y = FabTensor(value=-4, derivative=1, identifier='y')
+    x = FabTensor(value=3, derivative=[1, 0], identifier='x')
+    y = FabTensor(value=-4, derivative=[0, 1], identifier='y')
     z = len(x)
-    assert z.value == 1
-    assert z.derivative == 0
-    assert z.identifier == 'len(x)'
+    assert z == 2
+
 
 def test_fabtensor_neg():
     x = FabTensor(value=3, derivative=0, identifier='x')
