@@ -32,6 +32,10 @@ use. fabAD can be used to automatically differentiate functions via
 forward mode. Automatic Differentiation finds applications in 
 optimization, machine learning, and numerical methods.
 
+# Documentation
+
+We use `numpydoc==1.5.0`  and `sphinx==4.2` for documentation.
+
 # Broader Impact, Inclusivity and Future directions
 We hope that our package will be used in a variety of disciplines, 
 including physics, engineering, applied mathematics, astronomy, and even 
