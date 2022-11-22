@@ -2,7 +2,7 @@ name: test
 
 on:
   push:
-    branches: [ milestone2_test_feature ]
+    branches: [ 'milestone2*' ]
 
 
 jobs:
