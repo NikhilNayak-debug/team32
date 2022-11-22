@@ -3,6 +3,7 @@ import numbers
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import numpy as np
 from fab_ad.fab_ad import FabTensor
 from fab_ad.constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS

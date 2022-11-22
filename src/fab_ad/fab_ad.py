@@ -1,7 +1,15 @@
+from __future__ import annotations
+
 import os
+import sys
 import math
 import numpy as np
-from typing import Iterable
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from typing import Iterable, Union, Type
+from numbers import Number
+
 from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 
@@ -202,3 +210,18 @@ class FabTensor(object):
 
     def directional_derivative(self, seed_vector: np.array):
         return seed_vector.dot(self.derivative)
+
+
+def sqrt(tensor: Union[Type[FabTensor], Number]):
+    if isinstance(tensor, FabTensor):
+        if tensor.value < 0:
+            raise ValueError("Cannot compute sqrt for FabTensor with negative value!")
+        return FabTensor(
+            value=tensor.value ** 0.5,
+            derivative=0.5 * (tensor.value ** -0.5),
+            identifier=f"sqrt({tensor.identifier})"
+        )
+    elif isinstance(tensor, _ALLOWED_TYPES):
+        return FabTensor(value=tensor ** 0.5, name="sqrt(input)")
+    else:
+        raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")

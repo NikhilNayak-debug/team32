@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Welcome to Fab-AD’s documentation! &#8212; Fab-AD  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,7 +12,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -32,19 +34,19 @@
           <div class="body" role="main">
             
   <section id="module-src.fab_ad.fab_admath">
-<span id="welcome-to-fab-ad-s-documentation"></span><h1>Welcome to Fab-AD’s documentation!<a class="headerlink" href="#module-src.fab_ad.fab_admath" title="Permalink to this headline">¶</a></h1>
+<span id="welcome-to-fab-ad-s-documentation"></span><h1>Welcome to Fab-AD’s documentation!<a class="headerlink" href="#module-src.fab_ad.fab_admath" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.fab_ad.fab_admath.abs">
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">abs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.abs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying absolute value function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied absolute value function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying absolute value function</p>
 </dd>
@@ -64,7 +66,7 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">chain_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">der2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">higher_der</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.chain_rule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies chain rule to returns a new AD object with correct value and derivatives.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object</p>
 </dd>
@@ -78,7 +80,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>a new AD object with correct value and derivatives</p>
 </dd>
@@ -101,7 +103,7 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">choose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.choose" title="Permalink to this definition">¶</a></dt>
 <dd><p>A helper function that gives the value of n choose k, according to math definition</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>n</strong><span class="classifier">number</span></dt><dd><p>invalid input cases handled by numpy</p>
 </dd>
@@ -109,7 +111,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>number</dt><dd><p>the arithmetic value of n choose k, a scalar</p>
 </dd>
@@ -128,13 +130,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.cos" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying cosine function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied cosine function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying cosine function</p>
 </dd>
@@ -154,13 +156,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">cosh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.cosh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying hyperbolic cosine function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied hyperbolic cosine function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying hyperbolic cosine function</p>
 </dd>
@@ -180,13 +182,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.exp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying exponential function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied exponential function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying exponential function</p>
 </dd>
@@ -206,7 +208,7 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">fact_ad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.fact_ad" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns x(x-1)(x-2)…(x-n+1), the product of n terms, factorial-like operation</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>x</strong><span class="classifier">number</span></dt><dd><p>scalar</p>
 </dd>
@@ -214,7 +216,7 @@
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>number</dt><dd><p>x(x-1)(x-2)…(x-n+1) which is a scalar</p>
 </dd>
@@ -233,13 +235,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.log" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying log(base e) function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied log(base e) function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying log(base e) function</p>
 </dd>
@@ -259,13 +261,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">sec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.sec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying secant function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>num</strong><span class="classifier">array</span></dt><dd><p>array of numbers or a single number</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>array</dt><dd><p>the result after applying secant function</p>
 </dd>
@@ -284,13 +286,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">sech</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.sech" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying hyperbolic secant function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied hyperbolic secant function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying hyperbolic secant function</p>
 </dd>
@@ -309,13 +311,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.sigmoid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying sigmoid function, a special case of the logistic function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied sigmoid function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying sigmoid function</p>
 </dd>
@@ -335,13 +337,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.sin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying sine function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied sine function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying sine function</p>
 </dd>
@@ -361,13 +363,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">sinh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.sinh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying hyperbolic sine function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied hyperbolic sine function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying hyperbolic sine function</p>
 </dd>
@@ -387,13 +389,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.sqrt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying square root function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied square root function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying square root function</p>
 </dd>
@@ -413,13 +415,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.tan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying tangent function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied tangent function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying tangent function</p>
 </dd>
@@ -439,13 +441,13 @@
 <span class="sig-prename descclassname"><span class="pre">src.fab_ad.fab_admath.</span></span><span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.fab_ad.fab_admath.tanh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the new AD object after applying hyperbolic tangent function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ad</strong><span class="classifier">AD</span></dt><dd><p>An AD object to be applied hyperbolic tangent function on</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>AD</dt><dd><p>the new AD object after applying hyperbolic tangent function</p>
 </dd>
@@ -464,7 +466,7 @@
 </div>
 </section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -506,7 +508,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -523,7 +525,7 @@
       &copy;2022, Saket Joshi <saket_joshi@g.harvard.edu> , Nishtha Sardana <>, Nikhil Nayak <>, Sree Harsha Tanneru <>, Kareema Batool <>.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

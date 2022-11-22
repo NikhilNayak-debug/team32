@@ -15,6 +15,7 @@ author = 'Saket Joshi <saket_joshi@g.harvard.edu> , Nishtha Sardana <>, Nikhil N
 import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('./src/fab_ad'))
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.coverage', 'numpydoc', 'sphinx.ext.napoleon']
 
