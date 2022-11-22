@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  testjob:
+  pytest_cases:
 
     runs-on: ubuntu-latest
 

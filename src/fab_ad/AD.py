@@ -1,7 +1,10 @@
-import os
+import sys, os
 import math
 import numpy as np
 from typing import Iterable
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 

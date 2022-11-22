@@ -1,8 +1,16 @@
+from __future__ import annotations
+
 import os
+import sys
 import math
 import numpy as np
-from typing import Iterable
-from .constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from typing import Iterable, Union, Type
+from numbers import Number
+
+from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 
 class FabTensor(object):
@@ -200,22 +208,7 @@ class FabTensor(object):
         raise NotImplementedError
 
     @staticmethod
-    def sqrt(tensor):
-        if isinstance(tensor, FabTensor):
-            if tensor.value < 0:
-                raise ValueError("Cannot compute sqrt for FabTensor with negative value!")
-            return FabTensor(
-                value=tensor.value ** 0.5,
-                derivative=0.5 * (tensor.value ** -0.5),
-                identifier=f"sqrt({tensor.identifier})"
-            )
-        elif isinstance(tensor, _ALLOWED_TYPES):
-            return FabTensor(value=tensor ** 0.5, name="sqrt(input)")
-        else:
-            raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
-
-    @staticmethod
-    def exp(tensor):
+    def exp(tensor: Union[Type[FabTensor], Number]):
         if isinstance(tensor, FabTensor):
             return FabTensor(
                 value=np.exp(tensor.value),
@@ -228,7 +221,7 @@ class FabTensor(object):
             raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
-    def log(tensor):
+    def log(tensor: Union[Type[FabTensor], Number]):
         if isinstance(tensor, FabTensor):
             if tensor.value < 0:
                 raise ValueError("Cannot compute logarithm for FabTensor with negative value!")
@@ -243,7 +236,7 @@ class FabTensor(object):
             raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
-    def sin(tensor):
+    def sin(tensor: Union[Type[FabTensor], Number]):
         if isinstance(tensor, FabTensor):
             return FabTensor(
                 value=np.sin(tensor.value),
@@ -256,7 +249,7 @@ class FabTensor(object):
             raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
-    def cos(tensor):
+    def cos(tensor: Union[Type[FabTensor], Number]):
         if isinstance(tensor, FabTensor):
             return FabTensor(
                 value=np.cos(tensor.value),
@@ -269,7 +262,7 @@ class FabTensor(object):
             raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
-    def tan(tensor):
+    def tan(tensor: Union[Type[FabTensor], Number]):
         if isinstance(tensor, FabTensor):
             return FabTensor(
                 value=np.tan(tensor.value),
@@ -282,7 +275,7 @@ class FabTensor(object):
             raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
-    def arcsin(tensor):
+    def arcsin(tensor: Union[Type[FabTensor], Number]):
         if isinstance(tensor, FabTensor):
             if not (-1 <= tensor.value <= 1):
                 raise ValueError("Value of tensor out of range for function arcsin!")
@@ -299,7 +292,7 @@ class FabTensor(object):
             raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
-    def arccos(tensor):
+    def arccos(tensor: Union[Type[FabTensor], Number]):
         if isinstance(tensor, FabTensor):
             if not (-1 <= tensor.value <= 1):
                 raise ValueError("Value of tensor out of range for function arccos!")
@@ -316,7 +309,7 @@ class FabTensor(object):
             raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
 
     @staticmethod
-    def arctan(tensor):
+    def arctan(tensor: Union[Type[FabTensor], Number]):
         if isinstance(tensor, FabTensor):
             return FabTensor(
                 value=np.arctan(tensor.value),
@@ -329,3 +322,18 @@ class FabTensor(object):
             return FabTensor(value=np.arcsin(tensor), name="tan^{-1}(input)")
         else:
             raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
+
+
+def sqrt(tensor: Union[Type[FabTensor], Number]):
+    if isinstance(tensor, FabTensor):
+        if tensor.value < 0:
+            raise ValueError("Cannot compute sqrt for FabTensor with negative value!")
+        return FabTensor(
+            value=tensor.value ** 0.5,
+            derivative=0.5 * (tensor.value ** -0.5),
+            identifier=f"sqrt({tensor.identifier})"
+        )
+    elif isinstance(tensor, _ALLOWED_TYPES):
+        return FabTensor(value=tensor ** 0.5, name="sqrt(input)")
+    else:
+        raise TypeError(f"Methods {_SPECIAL_FUNCTIONS} can be used on FabTensor objects and {_ALLOWED_TYPES} only!")
