@@ -5,8 +5,8 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import numpy as np
-from fab_ad.fab_ad import FabTensor
-from fab_ad.constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
+from fab_ad import FabTensor
+from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 
 def sqrt(tensor):
@@ -15,7 +15,7 @@ def sqrt(tensor):
             raise ValueError("Cannot compute sqrt for FabTensor with negative value!")
         return FabTensor(
             value=tensor.value ** 0.5,
-            derivative=0.5 * (tensor.value ** -0.5),
+            derivative=0.5 * (tensor.value ** -0.5) * tensor.derivative,
             identifier=f"sqrt({tensor.identifier})"
         )
     elif isinstance(tensor, _ALLOWED_TYPES):
