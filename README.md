@@ -64,3 +64,16 @@ and applications, we want for our project to serve as a case study. This
 experience demonstrates that now is the perfect time for all types of 
 information to come together in order to support new discoveries, which 
 will enable us and many students to continue working toward this aim.
+
+#Software Inclusivity
+Users and collaborators from all origins and identities are welcome to the 
+fab_ad package and its developer. As was seen during the creation of this 
+package, we think that trust, respect, and care are the foundations of 
+greatness in a collaborative endeavor. In an effort to reach as many 
+people as possible who are interested in this package, we made every 
+effort to make it as inclusive and user-friendly as possible by including 
+the necessary documentation and instructions. Although this package was 
+created using Python and English, anyone who is proficient in another 
+language or programming language is welcome to contribute. Pull requests 
+are examined and approved by all developers while this package is being 
+developed.
