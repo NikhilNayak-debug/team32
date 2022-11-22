@@ -32,6 +32,8 @@ use. fabAD can be used to automatically differentiate functions via
 forward mode. Automatic Differentiation finds applications in 
 optimization, machine learning, and numerical methods.
 
+# User Guide
+
 # Documentation
 You can find the documentation for this package [here](https://code.harvard.edu/pages/CS107/team32/).
 
