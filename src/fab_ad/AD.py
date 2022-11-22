@@ -3,7 +3,7 @@ import math
 import numpy as np
 
 
-class FabTensor(object):
+class AD(object):
 
     def __init__(self, val, order=2):
         pass
