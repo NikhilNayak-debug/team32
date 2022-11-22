@@ -35,8 +35,8 @@ optimization, machine learning, and numerical methods.
 # Installation
 
 # User Guide
-Once you install the package, you can simple import it by `import fab_ad 
-as ad`.
+Once you install the package, you can simple import it by `from fab_ad 
+import FabTensor`.
 Afterwards, you could initiate the FabTensor object by giving the point 
 where you wish to differentiate. FabTensor can take in a vector input 
 values, representing a point's coordinates in multi-dimensional space. 
