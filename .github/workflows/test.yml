@@ -27,4 +27,4 @@ jobs:
 
     - name: Test with python unittest
       run:
-        python -m pytest tests/fab_ad/test_forward_mode.py
+        python -m pytest tests/
