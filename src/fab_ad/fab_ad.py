@@ -5,12 +5,6 @@ from typing import Iterable
 from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 
-class InputPlaceholder(object):
-
-    def __init__(self, shape):
-        self.shape = shape
-
-
 class FabTensor(object):
 
     def __init__(self, value, derivative=None, identifier=""):
