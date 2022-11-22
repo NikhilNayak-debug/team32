@@ -1,2 +1,66 @@
-name: test
-on: [push, pull_request, merge_group]
+# This is a basic workflow to help you get started with Actions
+name: CI/CD to run test cases
+
+# Controls when the action will run.
+on:
+  pull_request:
+    branches:
+      - main
+      - 'milestone*'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+job:
+  name: MyFirstYamlJob
+  # This workflow contains a single job called "build"
+
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-18.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.9.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m poetry install
+      - name: Test with python unittest
+        run: |
+          python -m pip install poetry
+          python -m poetry install
+          python -m pytest tests/fab_ad/test_forward_mode.py
+#      - name: Lint with flake8
+#        run: |
+#          pip install flake8
+#          # stop the build if there are Python syntax errors or undefined names
+#          flake8 . --count --select=E9,F63,F7,F82 --exclude=app/__init__.py,venv/*,cypress-testing/*,app/testing/* --show-source --statistics
+#          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+#          flake8 . --count --max-complexity=20 --max-line-length=127 --statistics --exclude=app/__init__.py,venv/*,cypress-testing/*,app/testing/* --ignore=E712,E711,W503,W504
+
+#      - name: Upload Unit-testing code coverage
+#        uses: codecov/codecov-action@v1
+#        with:
+#          flags: unittests # optional
+#          name: testing
+#          files: unit-testing.xml
+#          fail_ci_if_error: true # optional (default = false)
+#          verbose: true # optional (default = false)
+#
+#      - name: UI Test with cypress
+#        run: |
+#          # remove previous coverage metrics
+#          coverage erase
+#          export ARE_TESTING=true
+#          # run the server just in-memory
+#          nohup coverage run runserver.py  2>&1 &
+#          # now run the cypres tests against it
+#          cd ui-testing
+#          npm install
+#          npm run cypress:test

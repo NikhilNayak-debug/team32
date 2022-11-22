@@ -82,3 +82,30 @@ Every time one of us feels the need to start a pull request, that person
 would talk to the other members and come to a consensus. We would adore 
 the opportunity to carry this constructive dialogue into other 
 collaborations with this package.
+
+
+
+## Development environment setup
+
+1. Create virtual environment
+
+2. Use poetry to install Dependencies
+```bash
+python3 -m pip install poetry
+poetry install
+```
+
+### Running tests
+<TO DO>
+
+
+### Making documentation
+```
+Populate your master file /Users/saket/Documents/workdir/harvard_courses/cs107a/git/team32/index.rst and create other documentation
+source files. Use the Makefile to build the docs, like so:
+   make builder
+where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
+
+```
+
+
