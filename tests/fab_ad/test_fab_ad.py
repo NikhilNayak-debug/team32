@@ -2,9 +2,13 @@
 # test_AD.py
 # Created at 2:15 PM 11/22/22 by Saket Joshi
 #
+import sys
+import os
 import pytest
 
-from src.fab_ad.fab_ad import FabTensor
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src/fab_ad')))
+
+from fab_ad import FabTensor
 
 
 def test_fabtensor_sanity():
