@@ -12,8 +12,11 @@ author = 'Saket Joshi <saket_joshi@g.harvard.edu> , Nishtha Sardana <>, Nikhil N
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+import os
+import sys
+sys.path.insert(0, os.path.abspath('.'))
 
-extensions = []
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.coverage', 'numpydoc', 'sphinx.ext.napoleon']
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
