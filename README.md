@@ -53,3 +53,14 @@ derivative calculations done manually or using other algorithms, although
 derivative calculation techniques should still be used instead. These 
 exercises serve a purpose, and using this software to find the solutions 
 does not advance learning.
+
+Also evident is the connection between our automatic differentiation 
+algorithms and mathematical concepts like the Leibniz Rule and the Faa di 
+Bruno Formula that we made while working on this project. It shouldn't be 
+the first time that these formulas have been employed to compute 
+higher-order derivatives, but it provided motivation for us to carry out 
+the implementation ourselves. In order to close the gap between theories 
+and applications, we want for our project to serve as a case study. This 
+experience demonstrates that now is the perfect time for all types of 
+information to come together in order to support new discoveries, which 
+will enable us and many students to continue working toward this aim.
