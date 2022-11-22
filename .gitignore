@@ -5,6 +5,7 @@
 # Add local files & folders that you don't want to share
 bin/
 pyvenv.cfg
+poetry.lock
 
 # General
 .DS_Store

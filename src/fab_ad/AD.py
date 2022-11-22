@@ -5,7 +5,7 @@ from typing import Iterable
 from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 
-class FabTensor(object):
+class AD(object):
 
     def __init__(self, value, derivative=None, identifier=""):
         self.value = value
