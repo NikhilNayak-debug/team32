@@ -6,10 +6,12 @@
 Welcome to Fab-AD's documentation!
 ==================================
 
+.. automodule:: src.fab_ad.fab_admath
+    :members:
+
 .. toctree::
    :maxdepth: 2
-
-   src/fab_admath
+   :caption: Contents:
 
 
 
