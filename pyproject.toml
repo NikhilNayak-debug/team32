@@ -8,8 +8,12 @@ readme = "README.md"
 packages = [{include = "fab_ad"}]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
+numpy = "^1.23.5"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
 
 [build-system]
 requires = ["poetry-core"]
