@@ -4,6 +4,7 @@
 
 import sys
 import os
+import numpy as np
 import pytest
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src/fab_ad')))
 from fab_ad import FabTensor
@@ -106,6 +107,9 @@ def test_fabtensor_iadd():
     assert x.derivative == 1
     assert x.identifier == 'x + y'
 
+    with pytest.raises(TypeError):
+        x += np.array([2.0])
+
 
 def test_fabtensor_sub():
     x = FabTensor(value=3, derivative=0, identifier='x')
@@ -143,6 +147,9 @@ def test_fabtensor_isub():
     assert x.derivative == -1
     assert x.identifier == 'x - y'
 
+    with pytest.raises(TypeError):
+        x -= np.array([2.0])
+
 
 def test_fabtensor_mul():
     x = FabTensor(value=3, derivative=0, identifier='x')
@@ -151,6 +158,11 @@ def test_fabtensor_mul():
     assert z.value == -12
     assert z.derivative == 3
     assert z.identifier == 'x * y'
+
+    z = x * 3
+    assert z.value == 9
+    assert z.derivative == x.derivative * 3
+    assert z.identifier == 'x * 3'
 
 
 def test_fabtensor_rmul():
@@ -169,6 +181,9 @@ def test_fabtensor_imul():
     assert x.derivative == 3
     assert x.identifier == 'x * y'
 
+    with pytest.raises(TypeError):
+        z = x * np.array([2.0])
+
 def test_fabtensor_truediv():
     x = FabTensor(value=3, derivative=0, identifier='x')
     y = FabTensor(value=-4, derivative=1, identifier='y')
@@ -177,13 +192,19 @@ def test_fabtensor_truediv():
     assert z.derivative == -0.1875
     assert z.identifier == 'x * 1 / y'
 
+    z = x / 2
+    assert z.value == 1.5
+    assert z.derivative == x.derivative / 2
+
+
 def test_fabtensor_rtruedeiv():
     x = FabTensor(value=3, derivative=0, identifier='x')
     z = 1 / x
     assert z.value == 0.3333333333333333
     assert z.derivative == 0
     assert z.identifier == '1 / x'
-
+    with pytest.raises(TypeError):
+        z = x / np.array([2.0])
 
 def test_fabtensor_itruediv():
     x = FabTensor(value=3, derivative=0, identifier='x')
@@ -192,17 +213,19 @@ def test_fabtensor_itruediv():
     assert x.value == -0.75
     assert x.derivative == -0.1875
     assert x.identifier == 'x * 1 / y'
-
+    with pytest.raises(TypeError):
+        x /= np.array([2.0])
 
 def test_fabtensor_pow():
     x = FabTensor(value=3, derivative=[1, 0], identifier='x')
     y = FabTensor(value=4, derivative=[0, 1], identifier='y')
     z = x ** y
     assert z.value == 81
-    print(z)
     assert z.directional_derivative(seed_vector=[1, 0]) == 108.0
     assert z.directional_derivative(seed_vector=[0, 1]) == 88.9875953821169
     assert z.identifier == 'x^y'
+    with pytest.raises(TypeError):
+        z = x ** np.array([2.0])
 
 
 def test_fabtensor_rpow():
