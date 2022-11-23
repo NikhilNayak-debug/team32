@@ -152,6 +152,11 @@ poetry install
 
 ### Running tests
 <TO DO>
+All tests can be run for the repository using below command:
+
+```
+python -m pytest tests/
+```
 
 
 ### Making documentation
