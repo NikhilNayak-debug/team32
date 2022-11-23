@@ -51,10 +51,7 @@ Moreover, you could also add other supplementary features as in the code
 demo provided below. You can find this demo file by the name of usage.py 
 under src in the github.
 
-```import sys, os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 
-'..')))
+```
 
 from fab_ad import FabTensor
 import numpy as np
