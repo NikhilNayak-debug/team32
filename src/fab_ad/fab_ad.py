@@ -147,7 +147,7 @@ class FabTensor(object):
         if isinstance(other, FabTensor):
             return FabTensor(self.value - other.value, derivative=self.derivative - other.derivative, identifier=f'{self.identifier} - {other.identifier}')
         elif isinstance(other, _ALLOWED_TYPES):
-            return FabTensor(self.value - other.value, derivative=self.derivative, identifier=f'{self.identifier} + {other.identifier}')
+            return FabTensor(self.value - other, derivative=self.derivative, identifier=f'{self.identifier} - {other}')
         else:
             raise TypeError(f"addition not supported between types FabTensor and {type(other)}")
     

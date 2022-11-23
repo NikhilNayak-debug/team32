@@ -16,11 +16,49 @@ def test_fabtensor_sanity():
     assert z.value == 25
     assert z.derivative == -8
     assert z.identifier == 'x^2 + y^2'
+    x = FabTensor(value=3, identifier='x')
+    assert x.derivative == 1.0
+
+
+def test_fabtensor_repr():
+    x = FabTensor(value=3, derivative=0, identifier='x')
+    assert repr(x) == "value: 3 derivative: [0] name: x"
+
+
+def test_fabtensor_str():
+    x = FabTensor(value=3, derivative=0, identifier='x')
+    assert str(x) == "value: 3 derivative: [0] name: x"
+
+
+def test_fabtensor_equal():
+    x = FabTensor(value=3, derivative=0, identifier='x')
+    y = FabTensor(value=3, derivative=-1, identifier='y')
+    assert x == y
+    assert x == 3
+
+
+def test_fabtensor_not_equal():
+    x = FabTensor(value=3, derivative=0, identifier='x')
+    y = FabTensor(value=4, derivative=0, identifier='x')
+    assert x != y
+    assert x != 4
+
+
+def test_fabtensor_inequalities():
+    x = FabTensor(value=3, derivative=0, identifier='x')
+    y = FabTensor(value=4, derivative=0, identifier='x')
+    assert x < y
+    assert x < 4
+    assert x <= y
+    assert x <= 4
+    assert y > x
+    assert y > 3
+    assert y >= x
+    assert y >= 3
 
 
 def test_fabtensor_len():
     x = FabTensor(value=3, derivative=[1, 0], identifier='x')
-    y = FabTensor(value=-4, derivative=[0, 1], identifier='y')
     z = len(x)
     assert z == 2
 
@@ -40,6 +78,11 @@ def test_fabtensor_add():
     assert z.derivative == 1
     assert z.identifier == 'x + y'
 
+    z = x + 5
+    assert z.value == 8
+    assert z.derivative == x.derivative
+    assert z.identifier == 'x + 5'
+
 
 def test_fabtensor_radd():
     x = FabTensor(value=3, derivative=0, identifier='x')
@@ -48,6 +91,11 @@ def test_fabtensor_radd():
     assert z.value == 4
     assert z.derivative == 0
     assert z.identifier == '1 + x'
+
+    z = 5 + x
+    assert z.value == 8
+    assert z.derivative == x.derivative
+    assert z.identifier == '5 + x'
 
 
 def test_fabtensor_iadd():
@@ -67,6 +115,11 @@ def test_fabtensor_sub():
     assert z.derivative == -1
     assert z.identifier == 'x - y'
 
+    z = x - 5
+    assert z.value == -2
+    assert z.derivative == x.derivative
+    assert z.identifier == 'x - 5'
+
 
 def test_fabtensor_rsub():
     x = FabTensor(value=3, derivative=0, identifier='x')
@@ -75,6 +128,11 @@ def test_fabtensor_rsub():
     assert z.value == -2
     assert z.derivative == 0
     assert z.identifier == '-x + 1'
+
+    z = 5 - x
+    assert z.value == 2
+    assert z.derivative == -1 * x.derivative
+    assert z.identifier == '-x + 5'
 
 
 def test_fabtensor_isub():
