@@ -2,6 +2,11 @@
 #### MacOS.gitignore - https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
 ########################
 
+# Add local files & folders that you don't want to share
+bin/
+pyvenv.cfg
+poetry.lock
+
 # General
 .DS_Store
 .AppleDouble
