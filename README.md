@@ -76,6 +76,17 @@ You can find the documentation for this package [here](https://code.harvard.edu/
 
 We use `numpydoc==1.5.0`  and `sphinx==4.2` for documentation.
 
+# Future Features
+As part of the extension for this project we plan on implementing higher order and mixed derivatives of vector functions. Specifically we will implement the Hessian matrix which includes the derivative of a function twice w.r.t each independent variable (similar to the Laplacian operator) and mixed derivatives (i.e. derivative w.r.t one independent variable followed by another independent variable). Currently, we have implemented only the first derivative of a function w.r.t all the seed vectors/independent variables.
+
+### Changes in software
+Currently the derivative data member of FabTensor object is a 1D array. This would change to 2D array to accommodate the Hessian matrix. Also, we would have to update each of our elementary math functions to return the second derivatives by taking the derivative of the first derivative. The main challenge here will be to efficiently compute the second derivatives from the first derivatives by reusing most of the code already written and using a helper function to call the same derivative function twice.
+
+### Changes in directory structure, new modules, classes, data structures, etc
+Directory structure would remain the same. Modules and classes would also remain the same because we don't need a new class to implement the second derivative. We would need a new method in the fab_ad class to call the derivative for the second time (derivative of the first derivative). Also, we would have to update each of our elementary math functions to return the second derivatives. Data structure of the derivative member of the FabTensor class would change from being a 1D array to 2D array to store all the second derivatives i.e. the Hessian matrix.
+
+Higher order and mixed derivatives, specifically second order derivatives can then be used to determine the concavity, convexity, the points of inflection, and local extrema of functions. As pointed out earlier it can also be used to compute the Laplacian operator which is useful in describing many different phenomena, from electric potentials, to the diffusion equation for heat and fluid flow, and quantum mechanics.
+
 # Broader Impact, Inclusivity and Future directions
 We hope that our package will be used in a variety of disciplines, 
 including physics, engineering, applied mathematics, astronomy, and even 
