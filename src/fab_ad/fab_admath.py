@@ -10,6 +10,18 @@ from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 
 def sqrt(tensor):
+    """square root of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        square root of tensor with updated value and derivative
+    
+    """
     if isinstance(tensor, FabTensor):
         if tensor.value < 0:
             raise ValueError("Cannot compute sqrt for FabTensor with negative value!")
@@ -27,6 +39,18 @@ def sqrt(tensor):
 
 
 def exp(tensor):
+    """exponential of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        exponential of tensor with updated value and derivative
+    
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.exp(tensor.value),
@@ -40,6 +64,17 @@ def exp(tensor):
 
 
 def log(tensor):
+    """natural log of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        natural log of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         if tensor.value < 0:
             raise ValueError("Cannot compute logarithm for FabTensor with negative value!")
@@ -57,6 +92,17 @@ def log(tensor):
 
 
 def sin(tensor):
+    """sin of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        sin of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.sin(tensor.value),
@@ -70,6 +116,17 @@ def sin(tensor):
 
 
 def cos(tensor):
+    """cos of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        cos of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.cos(tensor.value),
@@ -83,6 +140,17 @@ def cos(tensor):
 
 
 def tan(tensor):
+    """tan of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        tan of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.tan(tensor.value),
@@ -96,6 +164,17 @@ def tan(tensor):
 
 
 def arcsin(tensor):
+    """sin inverse of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        sin inverse of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         if not (-1 <= tensor.value <= 1):
             raise ValueError("Value of tensor out of range for function arcsin!")
@@ -113,6 +192,17 @@ def arcsin(tensor):
 
 
 def arccos(tensor):
+    """cos inverse of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        cos inverse of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         if not (-1 <= tensor.value <= 1):
             raise ValueError("Value of tensor out of range for function arccos!")
@@ -130,6 +220,17 @@ def arccos(tensor):
 
 
 def arctan(tensor):
+    """tan inverse of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        tan inverse of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.arctan(tensor.value),
@@ -143,6 +244,18 @@ def arctan(tensor):
 
 
 def sigmoid(tensor):
+    """sigmoid of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        sigmoid of tensor with updated value and derivative
+    
+    """
     if isinstance(tensor, FabTensor):
         return 1/(1 + exp(-tensor))
     elif isinstance(tensor, _ALLOWED_TYPES):
