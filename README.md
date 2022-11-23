@@ -33,8 +33,15 @@ forward mode. Automatic Differentiation finds applications in
 optimization, machine learning, and numerical methods.
 
 # Installation
+Our package is for Python 3 only. You can access our package by cloning 
+our repository. To clone run our repository, run `git clone 
+git@code.harvard.edu:CS107/team32.git` from command line. Once you clone 
+the repository you can use `cd team32` where you can find all the files. 
+From there, you can use `cd src` to go where all the modules reside. Then 
+use `python -m pip install toml` which will install all the requirements 
+specified in toml.
 
-# User Guide
+ # User Guide
 Once you install the package, you can simple import it by `from fab_ad 
 import FabTensor`.
 Afterwards, you could initiate the FabTensor object by giving the point 
