@@ -10,6 +10,18 @@ from constants import _ALLOWED_TYPES, _SPECIAL_FUNCTIONS
 
 
 def sqrt(tensor):
+    """square root of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        square root of tensor with updated value and derivative
+    
+    """
     if isinstance(tensor, FabTensor):
         if tensor.value < 0:
             raise ValueError("Cannot compute sqrt for FabTensor with negative value!")
@@ -27,6 +39,18 @@ def sqrt(tensor):
 
 
 def exp(tensor):
+    """exponential of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        exponential of tensor with updated value and derivative
+    
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.exp(tensor.value),
@@ -40,6 +64,17 @@ def exp(tensor):
 
 
 def log(tensor):
+    """natural log of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        natural log of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         if tensor.value < 0:
             raise ValueError("Cannot compute logarithm for FabTensor with negative value!")
@@ -57,6 +92,17 @@ def log(tensor):
 
 
 def sin(tensor):
+    """sin of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        sin of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.sin(tensor.value),
