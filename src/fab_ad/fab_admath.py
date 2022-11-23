@@ -116,6 +116,17 @@ def sin(tensor):
 
 
 def cos(tensor):
+    """cos of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        cos of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.cos(tensor.value),
@@ -129,6 +140,17 @@ def cos(tensor):
 
 
 def tan(tensor):
+    """tan of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        tan of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.tan(tensor.value),
@@ -142,6 +164,17 @@ def tan(tensor):
 
 
 def arcsin(tensor):
+    """sin inverse of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        sin inverse of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         if not (-1 <= tensor.value <= 1):
             raise ValueError("Value of tensor out of range for function arcsin!")
@@ -159,6 +192,17 @@ def arcsin(tensor):
 
 
 def arccos(tensor):
+    """cos inverse of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        cos inverse of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         if not (-1 <= tensor.value <= 1):
             raise ValueError("Value of tensor out of range for function arccos!")
@@ -176,6 +220,17 @@ def arccos(tensor):
 
 
 def arctan(tensor):
+    """tan inverse of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        tan inverse of tensor with updated value and derivative
+    """
     if isinstance(tensor, FabTensor):
         return FabTensor(
             value=np.arctan(tensor.value),
@@ -189,6 +244,18 @@ def arctan(tensor):
 
 
 def sigmoid(tensor):
+    """sigmoid of tensor with updated value and derivative
+
+    Parameters
+    ----------
+    tensor : FabTensor
+
+    Returns
+    -------
+    FabTensor
+        sigmoid of tensor with updated value and derivative
+    
+    """
     if isinstance(tensor, FabTensor):
         return 1/(1 + exp(-tensor))
     elif isinstance(tensor, _ALLOWED_TYPES):
