@@ -51,15 +51,17 @@ Moreover, you could also add other supplementary features as in the code
 demo provided below. You can find this demo file by the name of usage.py 
 under src in the github.
 
-```
-
+```Python
 from fab_ad import FabTensor
 import numpy as np
 
 
 if __name__ == "__main__":
+    # value field should be initialized with value of the variable
+    # derivative field should have dimension equal to number of independent input variables i.e [df/dx, df/dy] in this case.
     x = FabTensor(value=3, derivative=np.array([1, 0]), identifier='x')
     y = FabTensor(value=-4, derivative=np.array([0, 1]), identifier='y')
+    # the following seed vector gives partial derivative w.r.t y
     seed_vector = np.array([0, 1])
     z = x * y
     print(z)
