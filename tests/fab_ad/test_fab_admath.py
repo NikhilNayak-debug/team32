@@ -49,7 +49,7 @@ def test_fabtensor_log():
     assert z.derivative == 0.5
     assert z.identifier == 'log(x) + log(x)'
     z = log(np.exp(1))
-    assert z.value == 1
+    assert pytest.approx(z.value, 0.01) == 1
     with pytest.raises(TypeError):
         log(np.array([0.0]))
     with pytest.raises(ValueError):

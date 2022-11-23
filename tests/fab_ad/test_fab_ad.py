@@ -222,7 +222,7 @@ def test_fabtensor_pow():
     z = x ** y
     assert z.value == 81
     assert z.directional_derivative(seed_vector=[1, 0]) == 108.0
-    assert z.directional_derivative(seed_vector=[0, 1]) == 88.9875953821169
+    assert pytest.approx(z.directional_derivative(seed_vector=[0, 1]), 0.01) == 88.9875953821169
     assert z.identifier == 'x^y'
     with pytest.raises(TypeError):
         z = x ** np.array([2.0])
