@@ -161,8 +161,7 @@ python -m pytest tests/
 
 ### Making documentation
 ```
-Populate your master file /Users/saket/Documents/workdir/harvard_courses/cs107a/git/team32/index.rst and create other documentation
-source files. Use the Makefile to build the docs, like so:
+Populate your master file team32/index.rst and create other documentation source files. Use the Makefile to build the docs, like so:
    make builder
 where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 
