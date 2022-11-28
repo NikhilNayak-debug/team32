@@ -2,7 +2,7 @@ name: Pytest test cases
 
 on:
   push:
-    branches: [ 'milestone2*' ]
+    branches: [ '*' ]
 
 
 jobs:
