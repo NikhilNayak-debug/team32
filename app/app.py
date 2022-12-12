@@ -2,7 +2,6 @@
 # Streamlit demonstration app.py
 # Created at 1:26 AM 12/10/22 by Saket Joshi
 #
-
 import streamlit as st
 import random, string
 import importlib
@@ -11,6 +10,8 @@ import sys
 from io import StringIO
 from contextlib import redirect_stdout
 
+
+os.system("pip install -i https://pypi.org/simple fab-ad==1.0.7")
 sys.path.append("/Users/saket/Documents/workdir/harvard_courses/cs107a/git/team32/src")
 
 from fab_ad.fab_ad_tensor import *
