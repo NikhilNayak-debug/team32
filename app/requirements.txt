@@ -1,4 +1,2 @@
 streamlit_ace
-#--index-url https://test.pypi.org/simple/
---find-links https://test.pypi.org/simple/ fab-ad==1.0.0
-
+fab-ad==1.0.7
